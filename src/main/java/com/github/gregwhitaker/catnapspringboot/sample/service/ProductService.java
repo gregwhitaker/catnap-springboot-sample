@@ -45,13 +45,13 @@ public class ProductService {
     private List<ImageDetails> images() {
         ImageDetails image1 = new ImageDetails();
         image1.setSortOrder(1);
-        image1.setUrl("http://www.google.com/1");
+        image1.setUrl("https://catnap-springboot-sample.herokuapp.com/12345-primary.png");
         image1.setAlt("Product 1");
         image1.setSize("primary");
 
         ImageDetails image2 = new ImageDetails();
         image2.setSortOrder(2);
-        image2.setUrl("http://www.google.com/2");
+        image2.setUrl("https://catnap-springboot-sample.herokuapp.com/12345-thumbnail.png");
         image2.setAlt("Product 1");
         image2.setSize("thumbnail");
 
