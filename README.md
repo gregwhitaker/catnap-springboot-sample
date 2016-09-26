@@ -1,6 +1,6 @@
 catnap-springboot-sample
 ===
-A sample Spring Boot application with support for partial JSON responses via [Catnap](https://github.com/gregwhitaker/catnap).
+A sample Spring Boot application with support for partial JSON responses via [Catnap](https://github.com/gregwhitaker/catnap) and deployment via [Heroku](https://www.heroku.com).
 
 ##License
 Copyright 2016 Greg Whitaker
