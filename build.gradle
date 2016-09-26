@@ -3,6 +3,7 @@ buildscript {
 }
 
 apply plugin: 'java'
+apply plugin: 'application'
 
 apply from: file('gradle/codequality.gradle')
 apply from: file('gradle/release.gradle')
@@ -15,6 +16,7 @@ allprojects {
     }
 }
 
+apply plugin: 'spring-boot'
 apply plugin: 'io.spring.dependency-management'
 
 dependencyManagement {
@@ -28,4 +30,19 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'io.springfox:springfox-swagger2:2.5.0'
     compile 'io.springfox:springfox-swagger-ui:2.5.0'
+}
+
+mainClassName = "com.github.gregwhitaker.catnapspringboot.sample.Application"
+
+task stage(type: Copy, dependsOn: [clean, build]) {
+    from jar.archivePath
+    into project.rootDir
+    rename {
+        'app.jar'
+    }
+}
+stage.mustRunAfter(clean)
+
+clean << {
+    project.file('app.jar').delete()
 }
