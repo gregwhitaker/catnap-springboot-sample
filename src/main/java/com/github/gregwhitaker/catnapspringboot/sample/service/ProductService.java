@@ -17,8 +17,11 @@
 package com.github.gregwhitaker.catnapspringboot.sample.service;
 
 import com.github.gregwhitaker.catnapspringboot.sample.model.ImageDetails;
+import com.github.gregwhitaker.catnapspringboot.sample.model.InventoryDetails;
+import com.github.gregwhitaker.catnapspringboot.sample.model.InventorySizeDetails;
 import com.github.gregwhitaker.catnapspringboot.sample.model.PricingDetails;
 import com.github.gregwhitaker.catnapspringboot.sample.model.ProductDetails;
+import com.github.gregwhitaker.catnapspringboot.sample.model.StoreInventoryDetails;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -38,6 +41,7 @@ public class ProductService {
         productDetails.setName("Product 1");
         productDetails.setPrices(prices());
         productDetails.setImages(images());
+        productDetails.setInventory(inventory());
 
         return productDetails;
     }
@@ -65,8 +69,98 @@ public class ProductService {
     private PricingDetails prices() {
         PricingDetails prices = new PricingDetails();
         prices.setList("$120.00");
-        prices.setSale("89.99");
+        prices.setSale("$89.99");
 
         return prices;
+    }
+
+    private InventoryDetails inventory() {
+        List<StoreInventoryDetails> storeInventories = new ArrayList<>();
+        storeInventories.add(store1InventoryDetails());
+        storeInventories.add(store2InventoryDetails());
+
+        InventoryDetails inventory = new InventoryDetails();
+        inventory.setOnline(onlineStoreInventory());
+        inventory.setStores(storeInventories);
+
+        return inventory;
+    }
+
+    private StoreInventoryDetails onlineStoreInventory() {
+        InventorySizeDetails smallInventory = new InventorySizeDetails();
+        smallInventory.setSize("S");
+        smallInventory.setCount(23);
+
+        InventorySizeDetails mediumInventory = new InventorySizeDetails();
+        mediumInventory.setSize("M");
+        mediumInventory.setCount(0);
+
+        InventorySizeDetails largeInventory = new InventorySizeDetails();
+        largeInventory.setSize("L");
+        largeInventory.setCount(6);
+
+        List<InventorySizeDetails> sizes = new ArrayList<>();
+        sizes.add(smallInventory);
+        sizes.add(mediumInventory);
+        sizes.add(largeInventory);
+
+        StoreInventoryDetails inventory = new StoreInventoryDetails();
+        inventory.setStoreId(999);
+        inventory.setStoreName("web");
+        inventory.setSizes(sizes);
+
+        return inventory;
+    }
+
+    private StoreInventoryDetails store1InventoryDetails() {
+        InventorySizeDetails smallInventory = new InventorySizeDetails();
+        smallInventory.setSize("S");
+        smallInventory.setCount(6);
+
+        InventorySizeDetails mediumInventory = new InventorySizeDetails();
+        mediumInventory.setSize("M");
+        mediumInventory.setCount(10);
+
+        InventorySizeDetails largeInventory = new InventorySizeDetails();
+        largeInventory.setSize("L");
+        largeInventory.setCount(14);
+
+        List<InventorySizeDetails> sizes = new ArrayList<>();
+        sizes.add(smallInventory);
+        sizes.add(mediumInventory);
+        sizes.add(largeInventory);
+
+        StoreInventoryDetails inventory = new StoreInventoryDetails();
+        inventory.setStoreId(1);
+        inventory.setStoreName("store 1");
+        inventory.setSizes(sizes);
+
+        return inventory;
+    }
+
+    private StoreInventoryDetails store2InventoryDetails() {
+        InventorySizeDetails smallInventory = new InventorySizeDetails();
+        smallInventory.setSize("S");
+        smallInventory.setCount(20);
+
+        InventorySizeDetails mediumInventory = new InventorySizeDetails();
+        mediumInventory.setSize("M");
+        mediumInventory.setCount(8);
+
+        InventorySizeDetails largeInventory = new InventorySizeDetails();
+        largeInventory.setSize("L");
+        largeInventory.setCount(3);
+
+        List<InventorySizeDetails> sizes = new ArrayList<>();
+        sizes.add(smallInventory);
+        sizes.add(mediumInventory);
+        sizes.add(largeInventory);
+
+        StoreInventoryDetails inventory = new StoreInventoryDetails();
+        inventory.setStoreId(2);
+        inventory.setStoreName("store 2");
+        inventory.setSizes(sizes);
+
+        return inventory;
     }
 }

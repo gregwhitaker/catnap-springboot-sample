@@ -24,13 +24,15 @@ import java.util.List;
         "id",
         "name",
         "prices",
-        "images"
+        "images",
+        "inventory"
 })
 public class ProductDetails {
     private String id;
     private String name;
     private PricingDetails prices;
     private List<ImageDetails> images;
+    private InventoryDetails inventory;
 
     public String getId() {
         return id;
@@ -62,5 +64,13 @@ public class ProductDetails {
 
     public void setImages(List<ImageDetails> images) {
         this.images = images;
+    }
+
+    public InventoryDetails getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(InventoryDetails inventory) {
+        this.inventory = inventory;
     }
 }
